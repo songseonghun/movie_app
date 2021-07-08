@@ -1,37 +1,22 @@
-import { pi } from 'prelude-ls';
-import React from 'react';
+import React from "react";
 
+class App extends React.Component {
+  state = {
+    isLoading: true,
+    movies : [],
+  };
 
-function Food({name, picture}) {
-  return <div>
-    <h2>I like {name}</h2>
-    <img src = {picture}></img>
+  componentDidMount() {
+    setTimeout(() => {
+      this.setState({ isLoading: false });
+    }, 3000);
+  }
 
-  </div>
-};
+  render() {
+    const { isLoading } = this.state;
 
-const foodILike = [
-  {name: "Kimchi",
-  image : "a.jpg"
-},
-  {name: "bulgogi",
-  image : "b.jpg"
-  },
-
-];
-
-
-
-function App() {
-  return (
-    <div className="App">
- 
-       <h1>Hello world!!</h1>
-       {foodILike.map(dish => (<Food name={dish.name} picture={dish.image} /> 
-       ))}
-
-    </div>
-  );
+    return <div>{isLoading ? "Loading" : "We are ready"}</div>;
+  }
 }
 
 export default App;
